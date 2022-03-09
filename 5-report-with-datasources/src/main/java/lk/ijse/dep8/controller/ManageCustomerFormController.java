@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import lk.ijse.dep8.util.CustomerTM;
 import net.sf.jasperreports.engine.*;
@@ -14,6 +15,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class ManageCustomerFormController {
@@ -93,6 +95,28 @@ public class ManageCustomerFormController {
     }
 
     public void btnExport_OnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Customer Report");
+        fileChooser.setInitialFileName("customer-report");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF File", "*.pdf"));
+        File file = fileChooser.showSaveDialog(btnExport.getScene().getWindow());
+
+        if (file != null){
+            String path = file.getAbsolutePath();
+
+            if (!System.getProperty("os.name").equalsIgnoreCase("windows")){
+                path += ".pdf";
+            }
+
+            JasperPrint jasperPrint = getJasperPrint();
+            try {
+                JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+                new Alert(Alert.AlertType.INFORMATION, "Exported successfully").show();
+            } catch (JRException e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Failed to export, try again").show();
+            }
+        }
 
     }
 
