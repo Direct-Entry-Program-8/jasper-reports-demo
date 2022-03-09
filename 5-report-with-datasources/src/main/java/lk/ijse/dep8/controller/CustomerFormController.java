@@ -7,13 +7,23 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.dep8.util.CustomerTM;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class CustomerFormController {
     public TableView<CustomerTM> tblCustomers;
     private Connection connection;
 
     public void initialize() throws ClassNotFoundException {
+
+        Properties prop = new Properties();
+        try {
+            prop.load(this.getClass().getResourceAsStream("/application.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to load configurations").show();
+        }
 
         /* Mapping for columns */
         tblCustomers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -22,7 +32,10 @@ public class CustomerFormController {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         try {
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dep8_test", "root", "mysql");
+            String url = String.format("jdbc:mysql://%s:%s/%s", prop.getProperty("app.ip"),
+                    prop.getProperty("app.port"), prop.getProperty("app.database"));
+            this.connection = DriverManager.getConnection(url,
+                    prop.getProperty("app.username"), prop.getProperty("app.password"));
             Statement stm = connection.createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM customer");
 
@@ -34,13 +47,15 @@ public class CustomerFormController {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to establish the database connection").show();
+            Platform.runLater(()->{
+                new Alert(Alert.AlertType.ERROR, "Failed to establish the database connection").show();
+            });
         }
 
         Platform.runLater(() -> {
             tblCustomers.getScene().getWindow().setOnCloseRequest(event -> {
                 try {
-                    if (!connection.isClosed()) {
+                    if (connection != null && !connection.isClosed()) {
                         connection.close();
                     }
                 } catch (SQLException e) {
