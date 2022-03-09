@@ -8,6 +8,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import lk.ijse.dep8.util.CustomerTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+import java.util.HashMap;
 
 public class ManageCustomerFormController {
 
@@ -36,11 +43,6 @@ public class ManageCustomerFormController {
         });
     }
 
-    public void btnExport_OnAction(ActionEvent event) {
-
-    }
-
-
     public void btnSaveCustomer_OnAction(ActionEvent event) {
         /* Let's do a little validation */
 
@@ -67,9 +69,36 @@ public class ManageCustomerFormController {
         txtId.requestFocus();
     }
 
+    private JasperPrint getJasperPrint(){
+        try {
+            JasperDesign jasperDesign = JRXmlLoader.load(this.getClass().getResourceAsStream("/report/customer-report1.jrxml"));
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            HashMap<String, Object> parameters = new HashMap<>();
+
+//            CustomerTM[] customers = new CustomerTM[tblCustomers.getItems().size()];
+//            int i = 0;
+//            for (CustomerTM customer : tblCustomers.getItems()) {
+//                customers[i++] = customer;
+//            }
+
+            CustomerTM[] customers = tblCustomers.getItems().toArray(new CustomerTM[]{});
+
+            return JasperFillManager.fillReport(jasperReport, parameters, new JRBeanArrayDataSource(customers));
+        } catch (JRException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnExport_OnAction(ActionEvent event) {
+
+    }
 
     public void btnViewReport_OnAction(ActionEvent event) {
-
+        JasperPrint jasperPrint = getJasperPrint();
+        JasperViewer.viewReport(jasperPrint, false);
     }
 
 }
