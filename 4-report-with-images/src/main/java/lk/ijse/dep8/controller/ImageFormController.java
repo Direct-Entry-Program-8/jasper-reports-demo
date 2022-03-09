@@ -92,15 +92,20 @@ public class ImageFormController {
 
             if (file != null){
 
+                String path =  file.getAbsolutePath();
+                if (!System.getProperty("os.name").equalsIgnoreCase("Windows")){
+                    path += fileChooser.getSelectedExtensionFilter().getExtensions().get(0).replace("*", "");
+                }
+
                 if (fileChooser.getSelectedExtensionFilter() == extensionFilters.get(0)){
                     JasperExportManager.exportReportToHtmlFile(jasperPrint,
-                            file.getAbsolutePath() + ".html");
+                            path);
                 }else if (fileChooser.getSelectedExtensionFilter() == extensionFilters.get(1)){
                     JasperExportManager.exportReportToPdfFile(jasperPrint,
-                            file.getAbsolutePath() + ".pdf");
+                            path);
                 }else{
                     JasperExportManager.exportReportToXmlFile(jasperPrint,
-                            file.getAbsolutePath() + ".xml",
+                            path,
                             true);
                 }
             }
