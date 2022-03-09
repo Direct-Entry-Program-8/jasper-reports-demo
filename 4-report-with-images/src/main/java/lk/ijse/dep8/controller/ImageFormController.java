@@ -9,7 +9,9 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ImageFormController {
@@ -79,13 +81,28 @@ public class ImageFormController {
 
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Export Report");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("HTML File","*.html"));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF File","*.pdf"));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML File","*.xml"));
+
+            List<FileChooser.ExtensionFilter> extensionFilters = new ArrayList<>();
+            extensionFilters.add(new FileChooser.ExtensionFilter("HTML File","*.html"));
+            extensionFilters.add(new FileChooser.ExtensionFilter("PDF File","*.pdf"));
+            extensionFilters.add(new FileChooser.ExtensionFilter("XML File","*.xml"));
+
+            fileChooser.getExtensionFilters().addAll(extensionFilters);
             File file = fileChooser.showSaveDialog(null);
 
             if (file != null){
-                JasperExportManager.exportReportToHtmlFile(jasperPrint, file.getAbsolutePath() + ".html");
+
+                if (fileChooser.getSelectedExtensionFilter() == extensionFilters.get(0)){
+                    JasperExportManager.exportReportToHtmlFile(jasperPrint,
+                            file.getAbsolutePath() + ".html");
+                }else if (fileChooser.getSelectedExtensionFilter() == extensionFilters.get(1)){
+                    JasperExportManager.exportReportToPdfFile(jasperPrint,
+                            file.getAbsolutePath() + ".pdf");
+                }else{
+                    JasperExportManager.exportReportToXmlFile(jasperPrint,
+                            file.getAbsolutePath() + ".xml",
+                            true);
+                }
             }
         } catch (JRException e) {
             e.printStackTrace();
