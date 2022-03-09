@@ -3,7 +3,6 @@ package lk.ijse.dep8.controller;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
@@ -11,6 +10,7 @@ import javafx.util.Callback;
 import lk.ijse.dep8.util.CustomerTM;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
@@ -28,6 +28,8 @@ public class ManageCustomerFormController {
     public Button btnExport;
     public TableView<CustomerTM> tblCustomers;
 
+    private boolean asAnArray;
+
     public void initialize() {
 
         /* Columns mapping */
@@ -43,6 +45,10 @@ public class ManageCustomerFormController {
             btnDelete.setOnAction((event -> tblCustomers.getItems().remove(param.getValue())));
             return new ReadOnlyObjectWrapper<>(btnDelete);
         });
+    }
+
+    public void initData(boolean asAnArray){
+        this.asAnArray = asAnArray;
     }
 
     public void btnSaveCustomer_OnAction(ActionEvent event) {
@@ -71,7 +77,7 @@ public class ManageCustomerFormController {
         txtId.requestFocus();
     }
 
-    private JasperPrint getJasperPrint(){
+    private JasperPrint getJasperPrint() {
         try {
             JasperDesign jasperDesign = JRXmlLoader.load(this.getClass().getResourceAsStream("/report/customer-report1.jrxml"));
 
@@ -85,9 +91,13 @@ public class ManageCustomerFormController {
 //                customers[i++] = customer;
 //            }
 
-            CustomerTM[] customers = tblCustomers.getItems().toArray(new CustomerTM[]{});
+            if (asAnArray) {
+                CustomerTM[] customers = tblCustomers.getItems().toArray(new CustomerTM[]{});
 
-            return JasperFillManager.fillReport(jasperReport, parameters, new JRBeanArrayDataSource(customers));
+                return JasperFillManager.fillReport(jasperReport, parameters, new JRBeanArrayDataSource(customers));
+            }else{
+                return JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(tblCustomers.getItems()));
+            }
         } catch (JRException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -101,10 +111,10 @@ public class ManageCustomerFormController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF File", "*.pdf"));
         File file = fileChooser.showSaveDialog(btnExport.getScene().getWindow());
 
-        if (file != null){
+        if (file != null) {
             String path = file.getAbsolutePath();
 
-            if (!System.getProperty("os.name").equalsIgnoreCase("windows")){
+            if (!System.getProperty("os.name").equalsIgnoreCase("windows")) {
                 path += ".pdf";
             }
 
