@@ -8,6 +8,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.dep8.util.CustomerTM;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Properties;
 
@@ -19,10 +21,14 @@ public class CustomerFormController {
 
         Properties prop = new Properties();
         try {
-            prop.load(this.getClass().getResourceAsStream("/application.properties"));
-        } catch (IOException e) {
+            prop.load(Files.newInputStream(Paths.get("/home/ranjith-suranga/application.properties")));
+            //prop.load(this.getClass().getResourceAsStream("/application.properties"));
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to load configurations").show();
+            Platform.runLater(()->{
+                new Alert(Alert.AlertType.ERROR, "Failed to load configurations").show();
+            });
+            return;
         }
 
         /* Mapping for columns */
@@ -50,6 +56,7 @@ public class CustomerFormController {
             Platform.runLater(()->{
                 new Alert(Alert.AlertType.ERROR, "Failed to establish the database connection").show();
             });
+            return;
         }
 
         Platform.runLater(() -> {
