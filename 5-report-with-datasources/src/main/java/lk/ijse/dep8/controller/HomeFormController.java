@@ -20,7 +20,18 @@ public class HomeFormController {
         loadManageCustomerForm(false);
     }
 
-    public void btnDB_OnAction(ActionEvent actionEvent) {
+    public void btnDB_OnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/CustomerForm.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Customer Report: Database DS");
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(this.root.getScene().getWindow());
+        stage.show();
+        stage.centerOnScreen();
     }
 
     private void loadManageCustomerForm(boolean asAnArray) throws IOException {
