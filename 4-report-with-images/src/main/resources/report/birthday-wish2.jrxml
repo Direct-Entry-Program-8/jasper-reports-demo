@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="birthday-wish" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7ce28cbf-9cc5-4164-b7de-fda350deb551">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Empty Records"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="40" uuid="715dcbda-9a1f-4d8a-a31a-88a56bcc7800"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Happy Birthday Dulanga - 22]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="260" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="90" width="70" height="80" uuid="6efbdb78-d223-43ef-9758-22aefbe5837e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="53" isBold="true"/>
+				</textElement>
+				<text><![CDATA[D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="90" width="70" height="80" uuid="dfaeb338-a33e-4e65-89b8-aa9da7595b48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="53" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M]]></text>
+			</staticText>
+			<image>
+				<reportElement x="140" y="10" width="140" height="140" uuid="7dee984a-1746-407d-816b-fa74ef860749"/>
+				<imageExpression><![CDATA["report/assets/dulanga.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="250" y="70" width="180" height="170" uuid="07da7d3e-0822-4cfd-812b-da1dfb543bd4"/>
+				<imageExpression><![CDATA["report/assets/happy-birth-day.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="264.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep8.controller.ImageFormController">
+   <children>
+      <Label layoutX="193.0" layoutY="25.0" text="DM Wishes">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Button layoutX="61.0" layoutY="113.0" mnemonicParsing="false" onAction="#btnLegacy_OnAction" prefHeight="49.0" prefWidth="254.0" text="Legacy Wish" AnchorPane.leftAnchor="55.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="55.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnNew_OnAction" prefHeight="49.0" prefWidth="254.0" text="New Wish">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Line endX="100.0" layoutX="279.0" layoutY="78.0" startX="-100.0" />
+      <Button layoutX="334.0" layoutY="113.0" mnemonicParsing="false" onAction="#btnPrint_OnAction" prefHeight="49.0" prefWidth="195.0" text="Print Card">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="334.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnExport_OnAction" prefHeight="49.0" prefWidth="195.0" text="Export Card">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
