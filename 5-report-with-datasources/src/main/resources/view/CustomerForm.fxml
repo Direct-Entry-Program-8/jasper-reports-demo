@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="359.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep8.controller.CustomerFormController">
    <children>
       <Label layoutX="168.0" layoutY="29.0" text="Customer Report">
@@ -23,5 +22,7 @@
         </columns>
       </TableView>
       <Button layoutX="216.0" layoutY="311.0" mnemonicParsing="false" onAction="#btnShowCustomerReport_OnAction" text="Show Customer Report" />
+      <Button layoutX="104.0" layoutY="311.0" mnemonicParsing="false" onAction="#btnLoadData_OnAction" prefHeight="26.0" prefWidth="102.0" text="Load Data" />
+      <Button layoutX="395.0" layoutY="311.0" mnemonicParsing="false" onAction="#btnClearData_OnAction" prefHeight="26.0" prefWidth="102.0" text="Clear Data" />
    </children>
 </AnchorPane>
