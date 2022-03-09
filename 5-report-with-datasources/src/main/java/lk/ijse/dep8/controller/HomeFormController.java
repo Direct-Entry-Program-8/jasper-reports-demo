@@ -51,4 +51,18 @@ public class HomeFormController {
         stage.show();
         stage.centerOnScreen();
     }
+
+    public void btnFinalReport_OnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/FinalReportForm.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Final Report for the Day");
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(this.root.getScene().getWindow());
+        stage.show();
+        stage.centerOnScreen();
+    }
 }

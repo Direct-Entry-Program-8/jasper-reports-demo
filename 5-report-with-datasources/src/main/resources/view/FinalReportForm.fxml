@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="136.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep8.controller.FinalReportFormController">
+   <children>
+      <Label layoutX="180.0" layoutY="31.0" text="Final Report for the Day">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtInput" layoutX="28.0" layoutY="90.0" prefHeight="26.0" prefWidth="412.0" promptText="Enter customer name or address" />
+      <Button defaultButton="true" layoutX="450.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnSearch_OnAction" text="Search Customers" />
+   </children>
+</AnchorPane>
