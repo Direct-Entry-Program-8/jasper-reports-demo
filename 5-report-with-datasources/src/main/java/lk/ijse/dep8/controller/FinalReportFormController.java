@@ -25,6 +25,10 @@ public class FinalReportFormController {
     public void initialize(){
         connection = DBConnection.getInstance().getConnection();
         swingNode = new SwingNode();
+        AnchorPane.setTopAnchor(swingNode,0.0);
+        AnchorPane.setBottomAnchor(swingNode,0.0);
+        AnchorPane.setLeftAnchor(swingNode,0.0);
+        AnchorPane.setRightAnchor(swingNode,0.0);
         pneContainer.getChildren().add(swingNode);
     }
 
@@ -39,6 +43,7 @@ public class FinalReportFormController {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
             //JasperViewer.viewReport(jasperPrint, false);
             JRViewer viewer = new JRViewer(jasperPrint);
+
             SwingUtilities.invokeLater(()->{
                 swingNode.setContent(viewer);
             });
