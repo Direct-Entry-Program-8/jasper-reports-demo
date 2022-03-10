@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="final-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e9fa550-0e84-4732-a261-072589fdd246">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="final-report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e9fa550-0e84-4732-a261-072589fdd246">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Dep8Customer"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="363"/>
@@ -97,7 +97,7 @@ LIKE  CONCAT($P{query}, '%') OR  dep8_test.customer.address LIKE CONCAT($P{query
 				<text><![CDATA[NAME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="220" y="1" width="185" height="30" backcolor="#F2F2F2" uuid="02bde23f-10d0-44e1-9056-d8f75c63ca3b">
+				<reportElement mode="Opaque" x="220" y="0" width="185" height="30" backcolor="#F2F2F2" uuid="02bde23f-10d0-44e1-9056-d8f75c63ca3b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="737acbcf-3467-435a-8981-fc8db022a287"/>
 				</reportElement>
 				<box leftPadding="5">
@@ -113,7 +113,7 @@ LIKE  CONCAT($P{query}, '%') OR  dep8_test.customer.address LIKE CONCAT($P{query
 				<text><![CDATA[ADDRESS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="405" y="1" width="145" height="30" backcolor="#F2F2F2" uuid="57f681e8-7cd0-4f42-94eb-8f2434d9cbf9">
+				<reportElement mode="Opaque" x="405" y="0" width="145" height="30" backcolor="#F2F2F2" uuid="57f681e8-7cd0-4f42-94eb-8f2434d9cbf9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="737acbcf-3467-435a-8981-fc8db022a287"/>
 				</reportElement>
 				<box leftPadding="5">
@@ -165,7 +165,7 @@ LIKE  CONCAT($P{query}, '%') OR  dep8_test.customer.address LIKE CONCAT($P{query
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="220" y="1" width="185" height="30" uuid="17deedfb-e6ca-48bf-9493-5cf86edbb697">
+				<reportElement x="220" y="0" width="185" height="30" uuid="17deedfb-e6ca-48bf-9493-5cf86edbb697">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="737acbcf-3467-435a-8981-fc8db022a287"/>
 				</reportElement>
 				<box leftPadding="5">
@@ -192,4 +192,15 @@ Copyright © 2022 DEP8. All Rights Reserved.]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="12" width="555" height="30" uuid="dac308b8-39bb-4899-9b39-b7f39240d2de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[No Records Found]]></text>
+			</staticText>
+		</band>
+	</noData>
 </jasperReport>

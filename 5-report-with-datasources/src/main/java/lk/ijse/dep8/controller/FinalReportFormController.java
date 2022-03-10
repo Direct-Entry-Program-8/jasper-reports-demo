@@ -43,6 +43,7 @@ public class FinalReportFormController {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
             //JasperViewer.viewReport(jasperPrint, false);
             JRViewer viewer = new JRViewer(jasperPrint);
+            viewer.setZoomRatio(0.75f);
 
             SwingUtilities.invokeLater(()->{
                 swingNode.setContent(viewer);

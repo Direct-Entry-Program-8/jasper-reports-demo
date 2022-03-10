@@ -15,6 +15,6 @@
       </Label>
       <TextField fx:id="txtInput" layoutX="28.0" layoutY="90.0" prefHeight="26.0" prefWidth="495.0" promptText="Enter customer name or address" />
       <Button defaultButton="true" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnSearch_OnAction" text="Search Customers" />
-      <AnchorPane fx:id="pneContainer" layoutX="28.0" layoutY="127.0" prefHeight="447.0" prefWidth="643.0" style="-fx-background-color: yellow;" />
+      <AnchorPane fx:id="pneContainer" layoutX="28.0" layoutY="127.0" prefHeight="447.0" prefWidth="643.0" style="-fx-border-color: black;" />
    </children>
 </AnchorPane>
