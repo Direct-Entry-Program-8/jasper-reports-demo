@@ -2,22 +2,21 @@ package lk.ijse.dep8.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.dep8.db.DBConnection;
 import lk.ijse.dep8.util.CustomerTM;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Properties;
 
 public class CustomerFormController {
     public TableView<CustomerTM> tblCustomers;
@@ -25,36 +24,18 @@ public class CustomerFormController {
 
     public void initialize() throws ClassNotFoundException {
 
-        Properties prop = new Properties();
-        try {
-            prop.load(Files.newInputStream(Paths.get("/home/ranjith-suranga/application.properties")));
-            //prop.load(this.getClass().getResourceAsStream("/application.properties"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Platform.runLater(()->{
-                new Alert(Alert.AlertType.ERROR, "Failed to load configurations").show();
-            });
-            return;
-        }
+        connection = DBConnection.getInstance().getConnection();
 
         /* Mapping for columns */
         tblCustomers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblCustomers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblCustomers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
         try {
-            String url = String.format("jdbc:mysql://%s:%s/%s", prop.getProperty("app.ip"),
-                    prop.getProperty("app.port"), prop.getProperty("app.database"));
-            this.connection = DriverManager.getConnection(url,
-                    prop.getProperty("app.username"), prop.getProperty("app.password"));
             loadCustomers();
-
         } catch (SQLException e) {
             e.printStackTrace();
-            Platform.runLater(()->{
-                new Alert(Alert.AlertType.ERROR, "Failed to establish the database connection").show();
-            });
+            Platform.runLater(()->new Alert(Alert.AlertType.ERROR, "Failed to load customers").show());
             return;
         }
 
