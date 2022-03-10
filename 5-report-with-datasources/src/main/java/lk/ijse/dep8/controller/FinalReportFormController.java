@@ -35,11 +35,14 @@ public class FinalReportFormController {
     public void btnSearch_OnAction(ActionEvent actionEvent) {
         try {
             JasperDesign jasperDesign = JRXmlLoader.load(this.getClass().getResourceAsStream("/report/final-report.jrxml"));
+            JasperDesign subJasperDesign = JRXmlLoader.load(this.getClass().getResourceAsStream("/report/sub-report.jrxml"));
 
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperReport subJasperReport = JasperCompileManager.compileReport(subJasperDesign);
 
             HashMap<String, Object> parameters = new HashMap<>();
             parameters.put("query", txtInput.getText());
+            parameters.put("subReport", subJasperReport);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
             //JasperViewer.viewReport(jasperPrint, false);
             JRViewer viewer = new JRViewer(jasperPrint);
