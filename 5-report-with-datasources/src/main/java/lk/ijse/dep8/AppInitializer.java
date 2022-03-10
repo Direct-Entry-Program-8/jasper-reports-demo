@@ -5,13 +5,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.dep8.db.DBConnection;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        try {
+            DBConnection.getInstance().getConnection().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

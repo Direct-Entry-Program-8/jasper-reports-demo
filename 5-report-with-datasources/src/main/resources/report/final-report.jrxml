@@ -39,7 +39,7 @@ LIKE  CONCAT($P{query}, '%') OR  dep8_test.customer.address LIKE CONCAT($P{query
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="50" height="50" uuid="b258a785-dc56-456a-b3c0-93d0c89ca3a8"/>
-				<imageExpression><![CDATA["/assets/target.png"]]></imageExpression>
+				<imageExpression><![CDATA["report/assets/target.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="390" y="10" width="160" height="30" uuid="6ba88a9a-cea3-450e-82c8-b0aa18810c96"/>

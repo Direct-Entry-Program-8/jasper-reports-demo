@@ -22,7 +22,7 @@ public class CustomerFormController {
     public TableView<CustomerTM> tblCustomers;
     private Connection connection;
 
-    public void initialize() throws ClassNotFoundException {
+    public void initialize()  {
 
         connection = DBConnection.getInstance().getConnection();
 
@@ -38,18 +38,6 @@ public class CustomerFormController {
             Platform.runLater(()->new Alert(Alert.AlertType.ERROR, "Failed to load customers").show());
             return;
         }
-
-        Platform.runLater(() -> {
-            tblCustomers.getScene().getWindow().setOnCloseRequest(event -> {
-                try {
-                    if (connection != null && !connection.isClosed()) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
-        });
     }
 
     private void loadCustomers() throws SQLException{
