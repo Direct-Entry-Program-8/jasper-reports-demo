@@ -6,14 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="136.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep8.controller.FinalReportFormController">
+<AnchorPane prefHeight="586.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep8.controller.FinalReportFormController">
    <children>
-      <Label layoutX="180.0" layoutY="31.0" text="Final Report for the Day">
+      <Label layoutX="223.0" layoutY="23.0" text="Final Report for the Day">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtInput" layoutX="28.0" layoutY="90.0" prefHeight="26.0" prefWidth="412.0" promptText="Enter customer name or address" />
-      <Button defaultButton="true" layoutX="450.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnSearch_OnAction" text="Search Customers" />
+      <TextField fx:id="txtInput" layoutX="28.0" layoutY="90.0" prefHeight="26.0" prefWidth="495.0" promptText="Enter customer name or address" />
+      <Button defaultButton="true" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnSearch_OnAction" text="Search Customers" />
+      <AnchorPane fx:id="pneContainer" layoutX="28.0" layoutY="127.0" prefHeight="447.0" prefWidth="643.0" style="-fx-background-color: yellow;" />
    </children>
 </AnchorPane>
